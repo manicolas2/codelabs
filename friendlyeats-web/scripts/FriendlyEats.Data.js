@@ -53,16 +53,57 @@ FriendlyEats.prototype.getRestaurant = function(id) {
   /*
     TODO: Retrieve a single restaurant
   */
+  return firebase.firestore().collection('restaurants').doc(id).get();
 };
 
 FriendlyEats.prototype.getFilteredRestaurants = function(filters, render) {
   /*
     TODO: Retrieve filtered list of restaurants
   */
+  var query = firebase.firestore().collection('restaurants');
+
+  if (filters.category !== 'Any') {
+    query = query.where('category', '==', filters.category);
+  }
+  
+  if (filters.city !== 'Any') {
+    query = query.where('city', '==', filters.city);
+  }
+  
+  if (filters.price !== 'Any') {
+    query = query.where('price', '==', filters.price.length);
+  }
+  
+  if (filters.sort === 'Rating') {
+    query = query.orderBy('avgRating', 'desc');
+  } else if (filters.sort === 'Reviews') {
+    query = query.orderBy('numRatings', 'desc');
+  }
+ 
+  this.getDocumentsInQuery(query, render);
 };
 
 FriendlyEats.prototype.addRating = function(restaurantID, rating) {
   /*
     TODO: Retrieve add a rating to a restaurant
   */
+  var collection = firebase.firestore().collection('restaurants');
+  var document = collection.doc(restaurantID);
+
+  return document.collection('ratings').add(rating).then(function() {
+    return firebase.firestore().runTransaction(function(transaction) {
+      return transaction.get(document).then(function(doc) {
+        var data = doc.data();
+
+        var newAverage =
+          (data.numRatings * data.avgRating + rating.rating) /
+          (data.numRatings + 1);
+
+        return transaction.update(document, {
+          numRatings: data.numRatings + 1,
+          avgRating: newAverage
+        });
+      });
+    });
+  });
 };
