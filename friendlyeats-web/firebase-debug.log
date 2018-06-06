@@ -1,0 +1,32 @@
+[debug] [2018-06-06T09:34:39.496Z] ----------------------------------------------------------------------
+[debug] [2018-06-06T09:34:39.499Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2018-06-06T09:34:39.500Z] CLI Version:   3.18.6
+[debug] [2018-06-06T09:34:39.500Z] Platform:      linux
+[debug] [2018-06-06T09:34:39.500Z] Node Version:  v10.3.0
+[debug] [2018-06-06T09:34:39.500Z] Time:          Wed Jun 06 2018 17:34:39 GMT+0800 (+08)
+[debug] [2018-06-06T09:34:39.500Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-06T09:34:39.511Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-06T09:34:39.511Z] > authorizing via signed-in user
+[debug] [2018-06-06T09:34:39.514Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cloud-firestore-codelabs  
+  
+ Wed Jun 06 2018 17:34:39 GMT+0800 (+08)
+[debug] [2018-06-06T09:34:40.611Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-06T09:34:40.613Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cloud-firestore-codelabs/tokens  
+  
+ Wed Jun 06 2018 17:34:40 GMT+0800 (+08)
+[debug] [2018-06-06T09:34:41.561Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-06T09:34:41.563Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cloud-firestore-codelabs  
+  
+ Wed Jun 06 2018 17:34:41 GMT+0800 (+08)
+[debug] [2018-06-06T09:34:42.622Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/markjay/Desktop/codelabs/friendlyeats-web'...
+[info] 
+[debug] [2018-06-06T09:34:42.626Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/45058144329/clients/_:getWebAppConfig  
+  
+ Wed Jun 06 2018 17:34:42 GMT+0800 (+08)
+[debug] [2018-06-06T09:34:43.491Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: ./
+[info] ✔  hosting: Local server: http://localhost:5000
+
