@@ -87,4 +87,23 @@ FriendlyEats.prototype.addRating = function(restaurantID, rating) {
   /*
     TODO: Retrieve add a rating to a restaurant
   */
+  var collection = firebase.firestore().collection('restaurants');
+  var document = collection.doc(restaurantID);
+
+  return document.collection('ratings').add(rating).then(function() {
+    return firebase.firestore().runTransaction(function(transaction) {
+      return transaction.get(document).then(function(doc) {
+        var data = doc.data();
+
+        var newAverage =
+          (data.numRatings * data.avgRating + rating.rating) /
+          (data.numRatings + 1);
+
+        return transaction.update(document, {
+          numRatings: data.numRatings + 1,
+          avgRating: newAverage
+        });
+      });
+    });
+  });
 };
